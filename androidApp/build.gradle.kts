@@ -1,17 +1,20 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(Plugins.androidApplication)
+    id(Plugins.hilt)
+    kotlin(KotlinPlugins.android)
+    kotlin(KotlinPlugins.kapt)
+    kotlin(KotlinPlugins.serialization) version Kotlin.version
 }
 
 android {
-    namespace = "com.robertruzsa.vbpvkmm.android"
-    compileSdk = 32
+    namespace = ProjectConfig.appId
+    compileSdk = ProjectConfig.compileSdk
     defaultConfig {
-        applicationId = "com.robertruzsa.vbpvkmm.android"
-        minSdk = 24
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ProjectConfig.appId
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = ProjectConfig.versionCode
+        versionName = ProjectConfig.versionName
     }
     buildFeatures {
         compose = true
@@ -33,10 +36,22 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.2.1")
-    implementation("androidx.compose.foundation:foundation:1.2.1")
-    implementation("androidx.compose.material:material:1.2.1")
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation(Compose.compiler)
+    implementation(Compose.ui)
+    implementation(Compose.uiToolingPreview)
+    implementation(Compose.hiltNavigationCompose)
+    implementation(Compose.material)
+    implementation(Compose.runtime)
+    implementation(Compose.navigation)
+    implementation(Compose.viewModelCompose)
+    implementation(Compose.activityCompose)
+    implementation(Compose.animatedNavigation)
+    implementation(Compose.extendedIcons)
+    debugImplementation(Compose.uiTooling)
+
+    kapt(Hilt.hiltCompiler)
+    implementation(Hilt.hiltAndroid)
+
+    implementation(Kotlinx.datetime)
+    implementation(Ktor.android)
 }

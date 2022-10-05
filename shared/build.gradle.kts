@@ -1,11 +1,12 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    kotlin(KotlinPlugins.multiplatform)
+    kotlin(KotlinPlugins.serialization) version Kotlin.version
+    id(Plugins.androidLibrary)
 }
 
 kotlin {
     android()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -17,18 +18,31 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(Ktor.core)
+                implementation(Ktor.clientSerialization)
+                implementation(Kotlinx.datetime)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(Ktor.android)
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
+            dependencies {
+                implementation(Ktor.ios)
+            }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
@@ -47,10 +61,10 @@ kotlin {
 }
 
 android {
-    namespace = "com.robertruzsa.vbpvkmm"
-    compileSdk = 32
+    namespace = ProjectConfig.appId
+    compileSdk = ProjectConfig.compileSdk
     defaultConfig {
-        minSdk = 24
-        targetSdk = 32
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
     }
 }
