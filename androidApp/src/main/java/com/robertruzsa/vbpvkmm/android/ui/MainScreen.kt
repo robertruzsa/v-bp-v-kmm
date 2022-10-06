@@ -17,6 +17,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.robertruzsa.vbpvkmm.android.features.calendar.CalendarScreen
 import com.robertruzsa.vbpvkmm.android.features.offers.OffersScreen
 import com.robertruzsa.vbpvkmm.android.features.search.SearchOffersScreen
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavItem
@@ -147,7 +148,7 @@ fun MainScreen() {
                     )
                 }
             ) {
-                // CalendarScreen(navController)
+                CalendarScreen(navController)
             }
         }
     }

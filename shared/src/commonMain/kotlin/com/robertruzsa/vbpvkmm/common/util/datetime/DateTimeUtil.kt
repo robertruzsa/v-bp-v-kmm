@@ -1,5 +1,6 @@
-package com.robertruzsa.vbpvkmm.common.util
+package com.robertruzsa.vbpvkmm.common.util.datetime
 
+import com.robertruzsa.vbpvkmm.common.util.LocalizedString
 import kotlin.time.Duration.Companion.days
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -24,8 +25,27 @@ object DateTimeUtil {
     }
 
     fun humanizeDate(date: LocalDateTime): String {
-        return date.toString()
+        val now = now()
+        if (isSameDay(date, now)) {
+            return LocalizedString("Ma", "Today").hu
+        }
+        if (isSameDay(date, now.plusDays(1))) {
+            return LocalizedString("Holnap", "Tomorrow").hu
+        }
+        val day = date.dayOfWeek.localized().regular.hu
+        val month = date.month.localized().regular.hu
+        return "$day, $month ${date.dayOfMonth}."
     }
+
+    fun formatHorizontalPickerDate(dateTime: LocalDateTime): String {
+        val dayOfWeek = dateTime.dayOfWeek.localized().short.hu
+        val month = dateTime.month.localized().short.hu
+        val dayOfMonth = dateTime.dayOfMonth
+        return "$dayOfWeek\n$month $dayOfMonth."
+    }
+
+    fun isSameDay(date: LocalDateTime, other: LocalDateTime): Boolean =
+        date.year == other.year && date.month == other.month && date.dayOfMonth == other.dayOfMonth
 
     fun LocalDateTime.plusDays(daysToAdd: Long): LocalDateTime {
         val timeZone = TimeZone.currentSystemDefault()

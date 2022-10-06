@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.robertruzsa.vbpvkmm.android.R
 import com.robertruzsa.vbpvkmm.android.ui.components.LocalSpacing
-import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil
+import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Location
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Route

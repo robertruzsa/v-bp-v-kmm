@@ -1,6 +1,6 @@
 package com.robertruzsa.vbpvkmm.features.search.domain
 
-import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil
+import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Route
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable

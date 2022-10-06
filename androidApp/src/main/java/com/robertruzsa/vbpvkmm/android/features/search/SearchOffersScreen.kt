@@ -15,9 +15,11 @@ import com.robertruzsa.vbpvkmm.android.features.search.components.SearchPanel
 import com.robertruzsa.vbpvkmm.android.ui.components.LocalSpacing
 import com.robertruzsa.vbpvkmm.android.ui.components.Spacing
 import com.robertruzsa.vbpvkmm.android.ui.components.TopBar
+import com.robertruzsa.vbpvkmm.android.util.NavUtil.getCurrentStateHandleValue
 import com.robertruzsa.vbpvkmm.android.util.NavUtil.setCurrentStateHandleValue
 import com.robertruzsa.vbpvkmm.common.domain.Argument
 import com.robertruzsa.vbpvkmm.common.domain.Screen
+import kotlinx.datetime.LocalDateTime
 
 @Composable
 fun SearchOffersScreen(
@@ -34,11 +36,12 @@ fun SearchOffersScreen(
         /*val locationFromSearchScreen: LocationType? = savedStateHandle?.get(Argument.Location.key)
         locationFromSearchScreen?.let { location ->
             viewModel.updateRoute(location)
-        }
-        val selectedDate: LocalDateTime? = savedStateHandle?.get(Argument.Date.key)
+        }*/
+        val selectedDate =
+            navController.getCurrentStateHandleValue<LocalDateTime>(Argument.Date.key)
         selectedDate?.let {
             viewModel.updateDate(it)
-        }*/
+        }
     }
 
     Column(
@@ -69,11 +72,11 @@ fun SearchOffersScreen(
             },
             date = viewModel.formattedDate,
             onDateClick = {
-                /*savedStateHandle?.set(
+                navController.setCurrentStateHandleValue(
                     key = Argument.Date.key,
                     value = date
                 )
-                navController.navigate(Screen.Calendar.route)*/
+                navController.navigate(Screen.Calendar.route)
             },
             onSearchClick = {
                 navController.setCurrentStateHandleValue(

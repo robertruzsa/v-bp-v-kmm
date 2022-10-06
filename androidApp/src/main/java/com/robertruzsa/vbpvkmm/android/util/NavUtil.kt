@@ -34,8 +34,10 @@ object NavUtil {
         setValueForPreviousSavedStateHandle(key, JsonUtil.toJsonString(value))
     }
 
-    inline fun <reified T> NavController.getCurrentStateHandleValue(key: String): T? =
-        getValueFromCurrentSavedStateHandle<T>(key)
+    inline fun <reified T> NavController.getCurrentStateHandleValue(key: String): T? {
+        val valueString = getValueFromCurrentSavedStateHandle<String>(key) ?: return null
+        return JsonUtil.fromJsonString<T>(valueString)
+    }
 
     inline fun <reified T> NavController.getPreviousStateHandleValue(key: String): T? {
         val valueString = getValueFromPreviousSavedStateHandle<String>(key) ?: return null

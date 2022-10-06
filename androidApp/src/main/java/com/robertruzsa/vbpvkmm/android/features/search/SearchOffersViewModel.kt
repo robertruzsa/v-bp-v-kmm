@@ -1,7 +1,7 @@
 package com.robertruzsa.vbpvkmm.android.features.search
 
 import androidx.lifecycle.ViewModel
-import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil
+import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.common.util.JsonUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Route
 import com.robertruzsa.vbpvkmm.features.search.domain.LocationType

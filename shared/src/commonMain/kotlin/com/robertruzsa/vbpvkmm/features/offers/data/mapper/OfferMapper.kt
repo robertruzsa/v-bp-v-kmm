@@ -1,6 +1,6 @@
 package com.robertruzsa.vbpvkmm.features.offers.data.mapper
 
-import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil
+import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.features.offers.data.dto.RideOfferQueryResponse
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Location
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
