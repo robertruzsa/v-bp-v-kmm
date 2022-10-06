@@ -22,6 +22,10 @@ kotlin {
             dependencies {
                 implementation(Ktor.core)
                 implementation(Ktor.clientSerialization)
+                implementation(Ktor.jsonSerialization)
+                implementation(Ktor.contentNegotiation)
+                implementation(Ktor.logging)
+                implementation(Ktor.logback)
                 implementation(Kotlinx.datetime)
             }
         }
