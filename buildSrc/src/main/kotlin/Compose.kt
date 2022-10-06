@@ -24,6 +24,8 @@ object Compose {
     private const val accompanistVersion = "0.26.4-beta"
     const val animatedNavigation =
         "com.google.accompanist:accompanist-navigation-animation:$accompanistVersion"
+    const val systemUIController =
+        "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
 
     const val extendedIcons = "androidx.compose.material:material-icons-extended:$composeVersion"
 }

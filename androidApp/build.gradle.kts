@@ -47,6 +47,7 @@ dependencies {
     implementation(Compose.activityCompose)
     implementation(Compose.animatedNavigation)
     implementation(Compose.extendedIcons)
+    implementation(Compose.systemUIController)
     debugImplementation(Compose.uiTooling)
 
     kapt(Hilt.hiltCompiler)
