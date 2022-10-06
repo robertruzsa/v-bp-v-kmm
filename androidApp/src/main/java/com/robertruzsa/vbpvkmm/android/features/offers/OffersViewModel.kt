@@ -4,15 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil
 import com.robertruzsa.vbpvkmm.common.util.DateTimeUtil.plusDays
+import com.robertruzsa.vbpvkmm.common.util.JsonUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
-import com.robertruzsa.vbpvkmm.features.offers.domain.model.OfferFilter
 import com.robertruzsa.vbpvkmm.features.offers.domain.repository.RideOfferRepository
+import com.robertruzsa.vbpvkmm.features.search.domain.OfferQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
+import javax.inject.Inject
 
 @HiltViewModel
 class OffersViewModel @Inject constructor(
@@ -24,7 +25,7 @@ class OffersViewModel @Inject constructor(
     private val _date = MutableStateFlow(DateTimeUtil.now())
     val date = _date.asStateFlow()
 
-    private var filter: OfferFilter? = null
+    private var filter: OfferQuery? = null
 
     init {
         getPosts()
@@ -51,7 +52,7 @@ class OffersViewModel @Inject constructor(
         _date.value = date
     }
 
-    fun onFilterChanged(filter: OfferFilter) {
+    fun onFilterChanged(filter: OfferQuery) {
         this.filter = filter
     }
 

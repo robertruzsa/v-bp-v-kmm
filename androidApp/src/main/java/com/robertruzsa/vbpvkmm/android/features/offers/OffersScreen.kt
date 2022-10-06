@@ -15,11 +15,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.robertruzsa.vbpvkmm.android.ui.components.LocalSpacing
 import com.robertruzsa.vbpvkmm.android.ui.components.TopBar
 import com.robertruzsa.vbpvkmm.android.ui.components.horizontaldatepicker.HorizontalDatePicker
-import com.robertruzsa.vbpvkmm.android.ui.components.LocalSpacing
+import com.robertruzsa.vbpvkmm.android.util.NavUtil.getPreviousStateHandleValue
 import com.robertruzsa.vbpvkmm.common.domain.Argument
-import com.robertruzsa.vbpvkmm.features.offers.domain.model.OfferFilter
+import com.robertruzsa.vbpvkmm.features.search.domain.OfferQuery
 
 @Composable
 fun OffersScreen(
@@ -30,8 +31,9 @@ fun OffersScreen(
     val savedStateHandle = navController.previousBackStackEntry?.savedStateHandle
 
     LaunchedEffect(Unit) {
-        val filters: OfferFilter? = savedStateHandle?.get(Argument.OfferFilters.key)
-        filters?.let {
+        val offerQuery =
+            navController.getPreviousStateHandleValue<OfferQuery>(Argument.OfferFilters.key)
+        offerQuery?.let {
             viewModel.run {
                 onFilterChanged(it)
                 onDateSelected(it.dateOfTravel)

@@ -18,6 +18,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.robertruzsa.vbpvkmm.android.features.offers.OffersScreen
+import com.robertruzsa.vbpvkmm.android.features.search.SearchOffersScreen
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavItem
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavigationBar
 import com.robertruzsa.vbpvkmm.common.domain.Screen
@@ -27,15 +28,15 @@ import com.robertruzsa.vbpvkmm.common.domain.Screen
 fun MainScreen() {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val mainScreens = listOf(Screen.Filter.route, Screen.CreateOffer.route)
+    val mainScreens = listOf(Screen.SearchOffers.route, Screen.CreateOffer.route)
     Scaffold(
         bottomBar = {
             if (navBackStackEntry?.destination?.route in mainScreens) {
                 BottomNavigationBar(
                     items = listOf(
                         BottomNavItem(
-                            name = Screen.Filter.title,
-                            route = Screen.Filter.route,
+                            name = Screen.SearchOffers.title,
+                            route = Screen.SearchOffers.route,
                             icon = Icons.Default.Search
                         ),
                         BottomNavItem(
@@ -60,11 +61,11 @@ fun MainScreen() {
     ) { innerPadding ->
         AnimatedNavHost(
             navController = navController,
-            startDestination = Screen.Filter.route,
+            startDestination = Screen.SearchOffers.route,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(
-                route = Screen.Filter.route,
+                route = Screen.SearchOffers.route,
                 enterTransition = {
                     slideIntoContainer(
                         towards = AnimatedContentScope.SlideDirection.Left,
@@ -78,8 +79,7 @@ fun MainScreen() {
                     )
                 }
             ) {
-                // FilterScreen(navController)
-                OffersScreen(navController)
+                SearchOffersScreen(navController)
             }
             composable(
                 route = Screen.CreateOffer.route,

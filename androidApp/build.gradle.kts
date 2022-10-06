@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.hilt)
@@ -15,6 +17,25 @@ android {
         targetSdk = ProjectConfig.targetSdk
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
+
+        val properties = Properties().apply {
+            load(project.rootProject.file("local.properties").inputStream())
+        }
+        resValue(
+            "string",
+            "fb_app_id",
+            properties.getProperty("fb_app_id")
+        )
+        resValue(
+            "string",
+            "fb_client_token",
+            properties.getProperty("fb_client_token")
+        )
+        resValue(
+            "string",
+            "fb_login_protocol_scheme",
+            properties.getProperty("fb_login_protocol_scheme")
+        )
     }
     buildFeatures {
         compose = true
@@ -49,6 +70,9 @@ dependencies {
     implementation(Compose.extendedIcons)
     implementation(Compose.systemUIController)
     debugImplementation(Compose.uiTooling)
+
+    implementation(Facebook.login)
+    implementation(Facebook.androidSdk)
 
     kapt(Hilt.hiltCompiler)
     implementation(Hilt.hiltAndroid)

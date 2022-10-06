@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.robertruzsa.vbpvkmm.android.features.auth.LoginScreen
 import com.robertruzsa.vbpvkmm.android.ui.theme.AppTheme
 import com.robertruzsa.vbpvkmm.common.domain.Screen
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,9 +25,9 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 AnimatedNavHost(
                     navController = navController,
-                    startDestination = Screen.Posts.route
+                    startDestination = Screen.Login.route
                 ) {
-                    /*composable(
+                    composable(
                         route = Screen.Login.route,
                         enterTransition = {
                             slideIntoContainer(
@@ -40,7 +41,9 @@ class MainActivity : ComponentActivity() {
                                 animationSpec = tween()
                             )
                         }
-                    ) { LoginScreen(navController) }*/
+                    ) {
+                        LoginScreen(navController)
+                    }
                     composable(
                         route = Screen.Posts.route,
                         enterTransition = {
@@ -55,7 +58,9 @@ class MainActivity : ComponentActivity() {
                                 animationSpec = tween()
                             )
                         }
-                    ) { MainScreen() }
+                    ) {
+                        MainScreen()
+                    }
                 }
             }
         }
