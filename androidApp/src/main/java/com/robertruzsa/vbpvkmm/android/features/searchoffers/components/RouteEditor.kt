@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.android.features.search
+package com.robertruzsa.vbpvkmm.android.features.searchoffers
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

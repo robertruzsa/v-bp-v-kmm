@@ -1,11 +1,12 @@
-package com.robertruzsa.vbpvkmm.android.features.search
+package com.robertruzsa.vbpvkmm.android.features.searchoffers
 
 import androidx.lifecycle.ViewModel
 import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.common.util.JsonUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Route
-import com.robertruzsa.vbpvkmm.features.search.domain.LocationType
-import com.robertruzsa.vbpvkmm.features.search.domain.OfferQuery
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.LocationInfo
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.OfferQuery
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.LocationType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,12 +25,12 @@ class SearchOffersViewModel @Inject constructor() : ViewModel() {
     val formattedDate: String
         get() = DateTimeUtil.humanizeDate(_date.value)
 
-    fun updateRoute(locationType: LocationType) {
-        when (locationType) {
-            is LocationType.Start ->
-                _route.value = _route.value.copy(startLocation = locationType.value)
-            is LocationType.End ->
-                _route.value = _route.value.copy(endLocation = locationType.value)
+    fun updateRoute(locationType: LocationInfo) {
+        when (locationType.type) {
+            LocationType.START ->
+                _route.value = _route.value.copy(startLocation = locationType.location)
+            LocationType.END ->
+                _route.value = _route.value.copy(endLocation = locationType.location)
         }
     }
 

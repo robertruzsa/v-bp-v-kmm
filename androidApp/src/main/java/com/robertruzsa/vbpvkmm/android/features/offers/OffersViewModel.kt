@@ -6,7 +6,7 @@ import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil.plusDays
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
 import com.robertruzsa.vbpvkmm.features.offers.domain.repository.RideOfferRepository
-import com.robertruzsa.vbpvkmm.features.search.domain.OfferQuery
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.OfferQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

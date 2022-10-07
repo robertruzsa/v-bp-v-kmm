@@ -28,4 +28,6 @@ object Compose {
         "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
 
     const val extendedIcons = "androidx.compose.material:material-icons-extended:$composeVersion"
+
+    const val liveData = "androidx.compose.runtime:runtime-livedata:$composeVersion"
 }

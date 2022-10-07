@@ -19,7 +19,8 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.robertruzsa.vbpvkmm.android.features.calendar.CalendarScreen
 import com.robertruzsa.vbpvkmm.android.features.offers.OffersScreen
-import com.robertruzsa.vbpvkmm.android.features.search.SearchOffersScreen
+import com.robertruzsa.vbpvkmm.android.features.searchlocation.SearchLocationScreen
+import com.robertruzsa.vbpvkmm.android.features.searchoffers.SearchOffersScreen
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavItem
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavigationBar
 import com.robertruzsa.vbpvkmm.common.domain.Screen
@@ -114,7 +115,7 @@ fun MainScreen() {
                     )
                 }
             ) {
-                // SearchLocationScreen(navController)
+                SearchLocationScreen(navController)
             }
             composable(
                 route = Screen.Offers.route,

@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.features.search.domain
+package com.robertruzsa.vbpvkmm.features.searchoffers.domain
 
 import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Route

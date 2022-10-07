@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.android.features.search
+package com.robertruzsa.vbpvkmm.android.features.searchoffers
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.robertruzsa.vbpvkmm.android.features.search.components.SearchPanel
+import com.robertruzsa.vbpvkmm.android.features.searchoffers.components.SearchPanel
 import com.robertruzsa.vbpvkmm.android.ui.components.LocalSpacing
 import com.robertruzsa.vbpvkmm.android.ui.components.Spacing
 import com.robertruzsa.vbpvkmm.android.ui.components.TopBar
@@ -19,6 +19,8 @@ import com.robertruzsa.vbpvkmm.android.util.NavUtil.getCurrentStateHandleValue
 import com.robertruzsa.vbpvkmm.android.util.NavUtil.setCurrentStateHandleValue
 import com.robertruzsa.vbpvkmm.common.domain.Argument
 import com.robertruzsa.vbpvkmm.common.domain.Screen
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.LocationInfo
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.LocationType
 import kotlinx.datetime.LocalDateTime
 
 @Composable
@@ -26,17 +28,17 @@ fun SearchOffersScreen(
     navController: NavController,
     viewModel: SearchOffersViewModel = hiltViewModel()
 ) {
-    // val savedStateHandle = navController.currentBackStackEntry?.savedStateHandle
 
     val route by viewModel.route.collectAsState()
 
     val date by viewModel.date.collectAsState()
 
     LaunchedEffect(Unit) {
-        /*val locationFromSearchScreen: LocationType? = savedStateHandle?.get(Argument.Location.key)
+        val locationFromSearchScreen =
+            navController.getCurrentStateHandleValue<LocationInfo>(Argument.Location.key)
         locationFromSearchScreen?.let { location ->
             viewModel.updateRoute(location)
-        }*/
+        }
         val selectedDate =
             navController.getCurrentStateHandleValue<LocalDateTime>(Argument.Date.key)
         selectedDate?.let {
@@ -54,18 +56,18 @@ fun SearchOffersScreen(
         SearchPanel(
             route = route,
             onStartLocationClick = {
-                /*savedStateHandle?.set(
+                navController.setCurrentStateHandleValue(
                     key = Argument.Location.key,
-                    value = LocationType.Start(it)
+                    value = LocationInfo(it, LocationType.START)
                 )
-                navController.navigate(Screen.SearchLocation.route)*/
+                navController.navigate(Screen.SearchLocation.route)
             },
             onEndLocationClick = {
-                /*savedStateHandle?.set(
+                navController.setCurrentStateHandleValue(
                     key = Argument.Location.key,
-                    value = LocationType.End(it)
+                    value = LocationInfo(it, LocationType.END)
                 )
-                navController.navigate(Screen.SearchLocation.route)*/
+                navController.navigate(Screen.SearchLocation.route)
             },
             onSwitchLocationsClick = {
                 viewModel.switchLocations()

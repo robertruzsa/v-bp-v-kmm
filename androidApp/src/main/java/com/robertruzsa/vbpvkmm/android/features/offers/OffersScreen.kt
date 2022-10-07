@@ -20,7 +20,7 @@ import com.robertruzsa.vbpvkmm.android.ui.components.TopBar
 import com.robertruzsa.vbpvkmm.android.ui.components.horizontaldatepicker.HorizontalDatePicker
 import com.robertruzsa.vbpvkmm.android.util.NavUtil.getPreviousStateHandleValue
 import com.robertruzsa.vbpvkmm.common.domain.Argument
-import com.robertruzsa.vbpvkmm.features.search.domain.OfferQuery
+import com.robertruzsa.vbpvkmm.features.searchoffers.domain.OfferQuery
 
 @Composable
 fun OffersScreen(
