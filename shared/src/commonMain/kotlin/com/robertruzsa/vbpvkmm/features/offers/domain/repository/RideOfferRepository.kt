@@ -4,4 +4,5 @@ import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
 
 interface RideOfferRepository {
     suspend fun getAllRideOffers(): List<Offer>
+    suspend fun createOffer(offer: Offer)
 }

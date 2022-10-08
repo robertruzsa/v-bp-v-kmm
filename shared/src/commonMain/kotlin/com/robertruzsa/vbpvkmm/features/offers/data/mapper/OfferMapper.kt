@@ -1,6 +1,7 @@
 package com.robertruzsa.vbpvkmm.features.offers.data.mapper
 
 import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
+import com.robertruzsa.vbpvkmm.features.offers.data.dto.RideOfferCreateRequest
 import com.robertruzsa.vbpvkmm.features.offers.data.dto.RideOfferQueryResponse
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Location
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
@@ -21,4 +22,18 @@ fun RideOfferQueryResponse.toDomainModel(): List<Offer> {
             )
         )
     }
+}
+
+fun Offer.toApiModel(): RideOfferCreateRequest {
+    return RideOfferCreateRequest(
+        userId = "empty",
+        route = RideOfferCreateRequest.Route(
+            from = RideOfferCreateRequest.Route.Location(route.startLocation.name),
+            to = RideOfferCreateRequest.Route.Location(route.endLocation.name)
+        ),
+        numberOfSeats = numberOfSeats,
+        priceInHuf = priceInHuf,
+        dateOfTravel = DateTimeUtil.toEpochMillis(dateOfTravel),
+        dateOfPost = DateTimeUtil.toEpochMillis(DateTimeUtil.now())
+    )
 }
