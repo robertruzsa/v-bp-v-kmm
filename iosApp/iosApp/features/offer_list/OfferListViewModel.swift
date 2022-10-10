@@ -9,8 +9,9 @@
 import shared
 
 class OfferListViewModel: ObservableObject {
+    
     private let rideOfferRepository: RideOfferRepository = RideOfferRepositoryImpl()
-    @Published var uiState = UIState.loading
+    @Published var uiState = UIState<[Offer]>.loading
     
     init() {
         loadRideOffers()
@@ -25,12 +26,6 @@ class OfferListViewModel: ObservableObject {
                 self.uiState = .error(error?.localizedDescription ?? "error")
             }
         }
-    }
-    
-    enum UIState {
-        case loading
-        case result([Offer])
-        case error(String)
     }
 }
 

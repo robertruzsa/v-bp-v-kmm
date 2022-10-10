@@ -11,17 +11,15 @@ import shared
 
 struct LocationItem: View {
     var location: Location
-    var onClick: (Location) -> Void
     var body: some View {
         Text(location.displayName)
-            .onTapGesture {
-                onClick(location)
-            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
     }
 }
 
 struct LocationItem_Previews: PreviewProvider {
     static var previews: some View {
-        LocationItem(location: Location(name: "Torda"), onClick: { _ in })
+        LocationItem(location: Location(name: "Torda"))
     }
 }

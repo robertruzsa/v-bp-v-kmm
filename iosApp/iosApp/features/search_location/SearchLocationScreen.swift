@@ -41,12 +41,12 @@ struct SearchLocationScreen: View {
                 case .result(let locations):
                     List(locations) { location in
                         LocationItem(
-                            location: location,
-                            onClick: { location in
-                                locationInfo = LocationInfo(location: location, type: locationInfo.type)
-                                dismiss()
-                            }
+                            location: location
                         )
+                        .onTapGesture {
+                            locationInfo = LocationInfo(location: location, type: locationInfo.type)
+                            dismiss()
+                        }
                     }
                 case .error(let description):
                     Text(description).multilineTextAlignment(.center)

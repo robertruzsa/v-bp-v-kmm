@@ -13,7 +13,7 @@ class SearchLocationViewModel : ObservableObject {
     
     @Published var isSearchActive: Bool = false
     
-    @Published var uiState = UIState.loading
+    @Published var uiState = UIState<[Location]>.loading
     
     init() {
         search(query: "")
@@ -36,12 +36,6 @@ class SearchLocationViewModel : ObservableObject {
                 }
             }
         }
-    }
-    
-    enum UIState {
-        case loading
-        case result([Location])
-        case error(String)
     }
 }
 
