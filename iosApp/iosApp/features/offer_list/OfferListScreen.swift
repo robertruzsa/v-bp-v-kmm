@@ -15,13 +15,8 @@ struct OfferListScreen: View {
     var body: some View {
         NavigationView {
             listView()
-                .navigationBarTitle("SpaceX Launches")
-                .navigationBarItems(trailing:
-                                        Button("Reload") {
-                    self.viewModel.loadRideOffers()
-                })
+                .navigationBarTitle("Hirdetések")
         }
-        
     }
     
     private func listView() -> AnyView {

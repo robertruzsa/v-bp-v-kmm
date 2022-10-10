@@ -6,21 +6,11 @@
 //  Copyright © 2022. orgName. All rights reserved.
 //
 
-import SwiftUI
 import shared
 
 class OfferListViewModel: ObservableObject {
-    
-    enum UIState {
-        case loading
-        case result([Offer])
-        case error(String)
-    }
-    
     private let rideOfferRepository: RideOfferRepository = RideOfferRepositoryImpl()
-    
     @Published var uiState = UIState.loading
-    
     
     init() {
         loadRideOffers()
@@ -37,6 +27,11 @@ class OfferListViewModel: ObservableObject {
         }
     }
     
+    enum UIState {
+        case loading
+        case result([Offer])
+        case error(String)
+    }
 }
 
 extension Offer: Identifiable { }
