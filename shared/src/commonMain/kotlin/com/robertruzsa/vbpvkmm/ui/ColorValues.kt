@@ -9,3 +9,4 @@ const val DarkSurfaceHex = 0xFF313032
 const val DarkTextHex = 0xFFBEB9B5
 const val OrangeHex = 0xFFF7B501
 const val LightGrayVariantHex = 0xFFD8D8DA
+const val GrayHex = 0xFF888888

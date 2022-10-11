@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct SelectValueButton: View {
     
@@ -22,6 +23,22 @@ struct SelectValueButton: View {
         self.onClick = onClick
     }
     
+    var font: Font {
+        if (self.value != nil && self.value != "") {
+            return Font.subheadline
+        } else {
+            return Font.body
+        }
+    }
+    
+    var fontColor: SwiftUI.Color {
+        if (self.value != nil && self.value != "") {
+            return Color(hex: ColorValuesKt.GrayHex)
+        } else {
+            return Color.black
+        }
+    }
+    
     var body: some View {
         Button(
             action: {
@@ -31,22 +48,24 @@ struct SelectValueButton: View {
             HStack {
                 Image(systemName: startIconSystemName)
                 VStack(alignment: HorizontalAlignment.leading) {
-                    Text(label)
+                    Text(label).foregroundColor(fontColor).font(font)
                     if (self.value != nil && self.value != "") {
                         Text(value!)
                     }
                 }
                 Spacer()
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.right").foregroundColor(Color(hex: ColorValuesKt.LightGrayVariantHex))
             }
-        }
+            .frame(maxWidth: .infinity)
+            .contentShape(Rectangle())
+        }.buttonStyle(.plain)
     }
 }
 
 struct SelectValueButton_Previews: PreviewProvider {
     static var previews: some View {
         SelectValueButton(
-            label: "Select value", value: nil, startIconSystemName: "plus", onClick: {}
+            label: "Select value", value: "Torda", startIconSystemName: "plus", onClick: {}
         )
     }
 }

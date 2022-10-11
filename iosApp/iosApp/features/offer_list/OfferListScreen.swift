@@ -13,23 +13,17 @@ struct OfferListScreen: View {
     @ObservedObject var viewModel = OfferListViewModel()
     
     var body: some View {
-        NavigationView {
-            listView()
-                .navigationBarTitle("Hirdetések")
-        }
-    }
-    
-    private func listView() -> AnyView {
-        switch viewModel.uiState {
-        case .loading:
-            return AnyView(Text("Loading...").multilineTextAlignment(.center))
-        case .result(let offers):
-            return AnyView(List(offers) { offer in
-                OfferItem(offer: offer)
-            })
-        case .error(let description):
-            return AnyView(Text(description).multilineTextAlignment(.center))
-        }
+            switch viewModel.uiState {
+            case .loading:
+               Text("Loading...").multilineTextAlignment(.center)
+            case .result(let offers):
+                List(offers) { offer in
+                    OfferItem(offer: offer)
+                }
+                .navigationTitle(viewModel.screenTitle)
+            case .error(let description):
+                Text(description).multilineTextAlignment(.center)
+            }
     }
 }
 

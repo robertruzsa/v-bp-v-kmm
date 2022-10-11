@@ -13,6 +13,10 @@ class OfferListViewModel: ObservableObject {
     private let rideOfferRepository: RideOfferRepository = RideOfferRepositoryImpl()
     @Published var uiState = UIState<[Offer]>.loading
     
+    var screenTitle: String {
+        "Hirdetések"
+    }
+    
     init() {
         loadRideOffers()
     }

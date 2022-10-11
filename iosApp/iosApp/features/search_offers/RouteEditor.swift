@@ -16,6 +16,12 @@ struct RouteEditor: View {
     let onEndLocationClick: () -> Void
     let onSwitchLocationsClick: () -> Void
     
+    var isLocationSelected: Bool {
+        let start = route.startLocation.name
+        let end = route.endLocation.name
+        return !start.isEmpty || !end.isEmpty
+    }
+    
     var body: some View {
         HStack {
             VStack {
@@ -36,13 +42,15 @@ struct RouteEditor: View {
                     }
                 ).padding()
             }
-            Button(
-                action: {
-                    onSwitchLocationsClick()
-                }
-            ) {
-                Image(systemName: "arrow.up.arrow.down")
-            }.padding()
+            if (isLocationSelected) {
+                Button(
+                    action: {
+                        onSwitchLocationsClick()
+                    }
+                ) {
+                    Image(systemName: "arrow.up.arrow.down")
+                }.padding()
+            }
         }
     }
 }

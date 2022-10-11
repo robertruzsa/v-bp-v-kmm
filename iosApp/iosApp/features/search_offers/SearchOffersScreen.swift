@@ -40,6 +40,11 @@ struct SearchOffersScreen: View {
                 ).padding()
                 NavigationLink(destination: OfferListScreen()) {
                     Text("Keresés")
+                        .foregroundColor(Color.white)
+                        .padding(.horizontal, 30.0)
+                        .padding(.vertical, 15)
+                        .background(Color(hex: ColorValuesKt.BlueHex))
+                            .cornerRadius(25)
                 }
                 Spacer()
             }
@@ -55,7 +60,6 @@ struct SearchOffersScreen: View {
 
 struct SearchOffersScreen_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
-        //SearchOffersScreen()
+        SearchOffersScreen()
     }
 }
