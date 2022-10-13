@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct SearchField: View {
     
@@ -14,24 +15,37 @@ struct SearchField: View {
     
     var search: (String) -> Void
     
+    @FocusState var isSearchFieldFocused: Bool
+    
     var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-            TextField("Search...", text: $viewModel.searchText)
-                .textFieldStyle(.roundedBorder)
-                .onChange(of: viewModel.debouncedSearchText) { text in
-                    search(text)
-                }
-            if (!viewModel.searchText.isEmpty) {
-                Button(
-                    action: {
-                        viewModel.searchText = ""
+        ZStack {
+            Rectangle()
+                .foregroundColor(Color(UIColor.secondarySystemBackground))
+            HStack {
+                Image(systemName: "magnifyingglass")
+                TextField("Search ..", text: $viewModel.searchText)
+                    .onChange(of: viewModel.debouncedSearchText) { text in
+                        search(text)
                     }
-                ) {
-                    Image(systemName: "xmark")
+                    .focused($isSearchFieldFocused)
+                    .onAppear {
+                        isSearchFieldFocused = true
+                    }
+                if (!viewModel.searchText.isEmpty) {
+                    Button(
+                        action: {
+                            viewModel.searchText = ""
+                        }
+                    ) {
+                        Image(systemName: "xmark.circle.fill")
+                    }
                 }
             }
+            .foregroundColor(.gray)
+            .padding([.leading, .trailing] , 10)
         }
+        .frame(height: 40)
+        .cornerRadius(13)
     }
 }
 

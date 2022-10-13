@@ -18,41 +18,39 @@ struct SearchLocationScreen: View {
     @Binding var locationInfo: LocationInfo
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(
-                        action: {
-                            dismiss()
-                        }
-                    ) {
-                        Text("Close")
-                    }.padding([.top, .trailing])
-                }
-                SearchField(
-                    search: { searchText in
-                        viewModel.search(query: searchText)
+        VStack {
+            HStack {
+                Button(
+                    action: {
+                        dismiss()
                     }
-                ).padding()
-                switch viewModel.uiState {
-                case .loading:
-                    Text("Loading...").multilineTextAlignment(.center)
-                case .result(let locations):
-                    List(locations) { location in
-                        LocationItem(
-                            location: location
-                        )
-                        .onTapGesture {
-                            locationInfo = LocationInfo(location: location, type: locationInfo.type)
-                            dismiss()
-                        }
-                    }
-                case .error(let description):
-                    Text(description).multilineTextAlignment(.center)
-                }
+                ) {
+                    Text("Mégsem")
+                }.padding([.top, .leading])
                 Spacer()
             }
+            SearchField(
+                search: { searchText in
+                    viewModel.search(query: searchText)
+                }
+            ).padding()
+            switch viewModel.uiState {
+            case .loading:
+                Text("Loading...").multilineTextAlignment(.center)
+            case .result(let locations):
+                List(locations) { location in
+                    LocationItem(
+                        location: location
+                    )
+                    .onTapGesture {
+                        locationInfo = LocationInfo(location: location, type: locationInfo.type)
+                        dismiss()
+                    }
+                }
+            case .error(let description):
+                Text(description).multilineTextAlignment(.center)
+            }
+            Spacer()
         }
     }
     

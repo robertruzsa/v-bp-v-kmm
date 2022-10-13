@@ -32,7 +32,8 @@ struct RouteEditor: View {
                     onClick: {
                         onStartLocationClick()
                     }
-                ).padding()
+                )
+                .padding(.bottom)
                 SelectValueButton(
                     label: "Érkezés helye",
                     value: route.endLocation.name,
@@ -40,7 +41,7 @@ struct RouteEditor: View {
                     onClick: {
                         onEndLocationClick()
                     }
-                ).padding()
+                )
             }
             if (isLocationSelected) {
                 Button(

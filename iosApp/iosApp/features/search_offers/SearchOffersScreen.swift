@@ -7,13 +7,13 @@
 //
 
 import SwiftUI
-import shared
 
 struct SearchOffersScreen: View {
     
     @ObservedObject private var viewModel = SearchOffersViewModel()
     
-    @State var presentingModal = false
+    @State var presentingSearchModal = false
+    @State var presentingDatePickerModal = false
     
     var body: some View {
         
@@ -23,35 +23,45 @@ struct SearchOffersScreen: View {
                     RouteEditor(
                         route: viewModel.route,
                         onStartLocationClick: {
-                            self.presentingModal = true
+                            self.presentingSearchModal = true
                             viewModel.onStartLocationClicked()
                         },
                         onEndLocationClick: {
-                            self.presentingModal = true
+                            self.presentingSearchModal = true
                             viewModel.onEndLocationClicked()
                         },
                         onSwitchLocationsClick: {
                             viewModel.switchLocations()
                         }
                     )
+                    .padding()
+                    .sheet(isPresented: $presentingSearchModal) {
+                        SearchLocationScreen(locationInfo: $viewModel.selectedLocation)
+                    }
                 }
                 SelectValueButton(
-                    label: "Utazás időpontja", value: "Value", startIconSystemName: "calendar", onClick: {}
-                ).padding()
-                NavigationLink(destination: OfferListScreen()) {
+                    label: "Utazás időpontja",
+                    value: "Value",
+                    startIconSystemName: "calendar",
+                    onClick: {
+                        presentingDatePickerModal = true
+                    }
+                )
+                .padding([.leading, .bottom, .trailing])
+                .sheet(isPresented: $presentingDatePickerModal) {
+                    DatePickerScreen()
+                }
+                NavigationLink(destination: OfferListScreen(route: viewModel.route)) {
                     Text("Keresés")
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color(.white))
                         .padding(.horizontal, 30.0)
                         .padding(.vertical, 15)
-                        .background(Color(hex: ColorValuesKt.BlueHex))
-                            .cornerRadius(25)
+                        .background(Color(.systemBlue))
+                        .cornerRadius(25)
                 }
                 Spacer()
             }
             .navigationBarTitle("Keresés")
-            .sheet(isPresented: $presentingModal) {
-                SearchLocationScreen(locationInfo: $viewModel.selectedLocation)
-            }
         }
         
         

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import shared
 
 struct SelectValueButton: View {
     
@@ -33,9 +32,9 @@ struct SelectValueButton: View {
     
     var fontColor: SwiftUI.Color {
         if (self.value != nil && self.value != "") {
-            return Color(hex: ColorValuesKt.GrayHex)
+            return Color(.gray)
         } else {
-            return Color.black
+            return Color(.label)
         }
     }
     
@@ -54,7 +53,7 @@ struct SelectValueButton: View {
                     }
                 }
                 Spacer()
-                Image(systemName: "chevron.right").foregroundColor(Color(hex: ColorValuesKt.LightGrayVariantHex))
+                Image(systemName: "chevron.right").foregroundColor(Color(.lightGray))
             }
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())

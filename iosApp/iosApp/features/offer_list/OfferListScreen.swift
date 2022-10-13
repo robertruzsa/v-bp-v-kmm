@@ -7,23 +7,26 @@
 //
 
 import SwiftUI
+import shared
 
 struct OfferListScreen: View {
     
     @ObservedObject var viewModel = OfferListViewModel()
     
+    var route: Route? = nil
+    
     var body: some View {
-            switch viewModel.uiState {
-            case .loading:
-               Text("Loading...").multilineTextAlignment(.center)
-            case .result(let offers):
-                List(offers) { offer in
-                    OfferItem(offer: offer)
-                }
-                .navigationTitle(viewModel.screenTitle)
-            case .error(let description):
-                Text(description).multilineTextAlignment(.center)
+        switch viewModel.uiState {
+        case .loading:
+            Text("Loading...").multilineTextAlignment(.center)
+        case .result(let offers):
+            List(offers) { offer in
+                OfferItem(offer: offer)
             }
+            .navigationTitle(route?.getDisplayText(default: "Hirdetések") ?? "")
+        case .error(let description):
+            Text(description).multilineTextAlignment(.center)
+        }
     }
 }
 
