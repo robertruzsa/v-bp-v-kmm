@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.android.features.offers
+package com.robertruzsa.vbpvkmm.android.features.offerlist
 
 import android.view.ContextThemeWrapper
 import android.widget.RatingBar

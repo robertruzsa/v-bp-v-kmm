@@ -1,13 +1,13 @@
 package com.robertruzsa.vbpvkmm.common.util.datetime
 
 import com.robertruzsa.vbpvkmm.common.util.LocalizedString
-import kotlin.time.Duration.Companion.days
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Duration.Companion.days
 
 object DateTimeUtil {
 

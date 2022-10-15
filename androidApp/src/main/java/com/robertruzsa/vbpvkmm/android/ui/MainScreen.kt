@@ -19,7 +19,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.robertruzsa.vbpvkmm.android.features.calendar.CalendarScreen
 import com.robertruzsa.vbpvkmm.android.features.createoffer.CreateOfferScreen
-import com.robertruzsa.vbpvkmm.android.features.offers.OffersScreen
+import com.robertruzsa.vbpvkmm.android.features.offerlist.OffersScreen
 import com.robertruzsa.vbpvkmm.android.features.searchlocation.SearchLocationScreen
 import com.robertruzsa.vbpvkmm.android.features.searchoffers.SearchOffersScreen
 import com.robertruzsa.vbpvkmm.android.ui.components.BottomNavItem

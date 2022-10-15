@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.android.features.offers
+package com.robertruzsa.vbpvkmm.android.features.offerlist
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,10 +25,8 @@ import com.robertruzsa.vbpvkmm.features.searchoffers.domain.OfferQuery
 @Composable
 fun OffersScreen(
     navController: NavController,
-    viewModel: OffersViewModel = hiltViewModel()
+    viewModel: OfferListViewModel = hiltViewModel()
 ) {
-
-    val savedStateHandle = navController.previousBackStackEntry?.savedStateHandle
 
     LaunchedEffect(Unit) {
         val offerQuery =

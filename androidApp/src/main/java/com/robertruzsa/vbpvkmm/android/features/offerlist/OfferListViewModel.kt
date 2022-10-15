@@ -1,4 +1,4 @@
-package com.robertruzsa.vbpvkmm.android.features.offers
+package com.robertruzsa.vbpvkmm.android.features.offerlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,7 @@ import kotlinx.datetime.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
-class OffersViewModel @Inject constructor(
+class OfferListViewModel @Inject constructor(
     private val offersRepository: RideOfferRepository
 ) : ViewModel() {
     private val _posts = MutableStateFlow<List<Offer>>(emptyList())
@@ -57,9 +57,5 @@ class OffersViewModel @Inject constructor(
     fun getSelectableDates(): List<LocalDateTime> {
         val startDate = filter?.dateOfTravel ?: DateTimeUtil.now()
         return DateTimeUtil.getSelectableDates(startDate)
-    }
-
-    companion object {
-        const val NUMBER_OF_SELECTABLE_DATES = 14
     }
 }
