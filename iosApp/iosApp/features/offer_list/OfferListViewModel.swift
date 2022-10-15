@@ -27,6 +27,12 @@ class OfferListViewModel: ObservableObject {
             }
         }
     }
+    
+    func getSelectableDates(startDate: Kotlinx_datetimeLocalDateTime) -> [Kotlinx_datetimeLocalDateTime] {
+        return DateTimeUtil.shared.getSelectableDates(startDateTime: startDate)
+    }
+    
 }
 
 extension Offer: Identifiable { }
+extension Kotlinx_datetimeLocalDateTime: Identifiable { }

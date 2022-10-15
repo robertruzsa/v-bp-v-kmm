@@ -17,6 +17,8 @@ class SearchOffersViewModel : ObservableObject {
             updateRoute(locationInfo: selectedLocation)
         }
     }
+    
+    @Published var selectedDate = Date()
 
     func switchLocations() {
         let startLocation = route.startLocation

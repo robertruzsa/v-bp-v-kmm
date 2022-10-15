@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct SearchOffersScreen: View {
     
@@ -41,7 +42,7 @@ struct SearchOffersScreen: View {
                 }
                 SelectValueButton(
                     label: "Utazás időpontja",
-                    value: "Value",
+                    value: viewModel.selectedDate.humanized(),
                     startIconSystemName: "calendar",
                     onClick: {
                         presentingDatePickerModal = true
@@ -49,9 +50,14 @@ struct SearchOffersScreen: View {
                 )
                 .padding([.leading, .bottom, .trailing])
                 .sheet(isPresented: $presentingDatePickerModal) {
-                    DatePickerScreen()
+                    DatePickerScreen(selectedDate: $viewModel.selectedDate)
                 }
-                NavigationLink(destination: OfferListScreen(route: viewModel.route)) {
+                NavigationLink(
+                    destination: OfferListScreen(
+                        route: viewModel.route,
+                        date: viewModel.selectedDate.toKotlinDate()
+                    )
+                ) {
                     Text("Keresés")
                         .foregroundColor(Color(.white))
                         .padding(.horizontal, 30.0)

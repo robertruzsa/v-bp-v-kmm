@@ -22,7 +22,7 @@ struct OfferItem: View {
             HStack {
                 Text(offer.user.name)
                 Spacer()
-                Text(DateTimeUtil().humanizeDate(date: offer.dateOfTravel))
+                Text(DateTimeUtil.shared.humanizeDate(date: offer.dateOfTravel, languageCode: NSLocale.current.languageCode ?? "en"))
             }
             HStack {
                 Text(String(offer.user.rating))

@@ -9,27 +9,45 @@
 import SwiftUI
 
 struct DatePickerScreen: View {
-    @State private var date = Date()
+    
+    @Binding var selectedDate: Date
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
             VStack {
                 DatePicker(
                     "",
-                    selection: $date,
+                    selection: $selectedDate,
                     displayedComponents: [.date]
                 )
+                .onChange(of: selectedDate, perform: { date in
+                    selectedDate = date
+                    dismiss()
+                })
                 .padding()
                 .datePickerStyle(.graphical)
                 .navigationTitle("Mikor utazol?")
+                .toolbar {
+                    Button(
+                        action: { dismiss()}
+                    ) {
+                        Image(systemName: "xmark")
+                    }
+                }
                 Spacer()
             }
         }
+    }
+    
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct DatePickerScreen_Previews: PreviewProvider {
     static var previews: some View {
-        DatePickerScreen()
+        DatePickerScreen(selectedDate: .constant(Date()))
     }
 }

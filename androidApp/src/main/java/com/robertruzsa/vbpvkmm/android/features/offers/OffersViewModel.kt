@@ -3,7 +3,6 @@ package com.robertruzsa.vbpvkmm.android.features.offers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil
-import com.robertruzsa.vbpvkmm.common.util.datetime.DateTimeUtil.plusDays
 import com.robertruzsa.vbpvkmm.features.offers.domain.model.Offer
 import com.robertruzsa.vbpvkmm.features.offers.domain.repository.RideOfferRepository
 import com.robertruzsa.vbpvkmm.features.searchoffers.domain.OfferQuery
@@ -56,14 +55,8 @@ class OffersViewModel @Inject constructor(
     }
 
     fun getSelectableDates(): List<LocalDateTime> {
-        val selectableDates = mutableListOf<LocalDateTime>()
-        var date = filter?.dateOfTravel ?: DateTimeUtil.now()
-        selectableDates.add(date)
-        repeat(NUMBER_OF_SELECTABLE_DATES) {
-            date = date.plusDays(1)
-            selectableDates.add(date)
-        }
-        return selectableDates
+        val startDate = filter?.dateOfTravel ?: DateTimeUtil.now()
+        return DateTimeUtil.getSelectableDates(startDate)
     }
 
     companion object {

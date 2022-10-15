@@ -18,40 +18,40 @@ struct SearchLocationScreen: View {
     @Binding var locationInfo: LocationInfo
     
     var body: some View {
-        VStack {
-            HStack {
-                Button(
-                    action: {
-                        dismiss()
-                    }
-                ) {
-                    Text("Mégsem")
-                }.padding([.top, .leading])
-                Spacer()
-            }
-            SearchField(
-                search: { searchText in
-                    viewModel.search(query: searchText)
-                }
-            ).padding()
-            switch viewModel.uiState {
-            case .loading:
-                Text("Loading...").multilineTextAlignment(.center)
-            case .result(let locations):
-                List(locations) { location in
-                    LocationItem(
-                        location: location
+        NavigationView {
+            VStack {
+                switch viewModel.uiState {
+                case .loading:
+                    Text("Loading...").multilineTextAlignment(.center)
+                case .result(let locations):
+                    SearchField(
+                        search: { searchText in
+                            viewModel.search(query: searchText)
+                        }
                     )
-                    .onTapGesture {
-                        locationInfo = LocationInfo(location: location, type: locationInfo.type)
-                        dismiss()
+                    .padding(.horizontal)
+                    List(locations) { location in
+                        LocationItem(
+                            location: location
+                        )
+                        .onTapGesture {
+                            locationInfo = LocationInfo(location: location, type: locationInfo.type)
+                            dismiss()
+                        }
                     }
+                case .error(let description):
+                    Text(description).multilineTextAlignment(.center)
                 }
-            case .error(let description):
-                Text(description).multilineTextAlignment(.center)
+                Spacer()
+            }.toolbar {
+                Button(
+                    action: { dismiss() }
+                ) {
+                    Image(systemName: "xmark")
+                }
             }
-            Spacer()
         }
+       
     }
     
     private func dismiss() {

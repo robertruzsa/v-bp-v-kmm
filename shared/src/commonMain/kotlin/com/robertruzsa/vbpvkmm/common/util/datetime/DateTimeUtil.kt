@@ -24,16 +24,39 @@ object DateTimeUtil {
             .toLocalDateTime(TimeZone.currentSystemDefault())
     }
 
-    fun humanizeDate(date: LocalDateTime): String {
+    fun humanizeDate(date: LocalDateTime, languageCode: String = "hu"): String {
+        val isHungarianLanguage = languageCode == "hu"
         val now = now()
         if (isSameDay(date, now)) {
-            return LocalizedString("Ma", "Today").hu
+            val todayText = LocalizedString("Ma", "Today")
+            return if (isHungarianLanguage) {
+                todayText.hu
+            } else {
+                todayText.en
+            }
         }
+
+        val tomorrowText = LocalizedString("Holnap", "Tomorrow")
         if (isSameDay(date, now.plusDays(1))) {
-            return LocalizedString("Holnap", "Tomorrow").hu
+            return if (isHungarianLanguage) {
+                tomorrowText.hu
+            } else {
+                tomorrowText.en
+            }
         }
-        val day = date.dayOfWeek.localized().regular.hu
-        val month = date.month.localized().regular.hu
+
+        val dayText = date.dayOfWeek.localized().regular
+        val day = if (isHungarianLanguage) {
+            dayText.hu
+        } else {
+            dayText.en
+        }
+        val monthText = date.month.localized().regular
+        val month = if (isHungarianLanguage) {
+            monthText.hu
+        } else {
+            monthText.en
+        }
         return "$day, $month ${date.dayOfMonth}."
     }
 
@@ -51,4 +74,17 @@ object DateTimeUtil {
         val timeZone = TimeZone.currentSystemDefault()
         return this.toInstant(timeZone).plus(daysToAdd.days).toLocalDateTime(timeZone)
     }
+
+    fun getSelectableDates(startDateTime: LocalDateTime?): List<LocalDateTime> {
+        val selectableDates = mutableListOf<LocalDateTime>()
+        var date = startDateTime ?: now()
+        selectableDates.add(date)
+        repeat(NUMBER_OF_SELECTABLE_DATES) {
+            date = date.plusDays(1)
+            selectableDates.add(date)
+        }
+        return selectableDates
+    }
+
+    private const val NUMBER_OF_SELECTABLE_DATES = 14
 }

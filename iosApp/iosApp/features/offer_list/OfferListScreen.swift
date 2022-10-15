@@ -15,15 +15,25 @@ struct OfferListScreen: View {
     
     var route: Route? = nil
     
+    var date = DateTimeUtil.shared.now()
+    
     var body: some View {
         switch viewModel.uiState {
         case .loading:
             Text("Loading...").multilineTextAlignment(.center)
         case .result(let offers):
-            List(offers) { offer in
-                OfferItem(offer: offer)
+            VStack {
+                List(offers) { offer in
+                    OfferItem(offer: offer)
+                }
             }
             .navigationTitle(route?.getDisplayText(default: "Hirdetések") ?? "")
+            .safeAreaInset(edge: .top) {
+                HorizontalDatePicker(
+                    selectableDates: viewModel.getSelectableDates(startDate: date),
+                    selectedDate: date
+                ).background(Color(.systemBackground))
+            }
         case .error(let description):
             Text(description).multilineTextAlignment(.center)
         }
