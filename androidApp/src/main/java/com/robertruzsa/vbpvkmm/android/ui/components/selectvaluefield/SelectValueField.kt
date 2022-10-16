@@ -62,6 +62,13 @@ fun SelectValueField(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
+                        modifier = Modifier.padding(
+                            vertical = if (isValueSelected) {
+                                0.dp
+                            } else {
+                                LocalSpacing.current.spacing8dp
+                            }
+                        ),
                         text = label,
                         style = MaterialTheme.typography.subtitle1.copy(
                             fontSize = if (isValueSelected) {

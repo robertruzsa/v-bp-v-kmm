@@ -31,6 +31,7 @@ class SearchOffersViewModel @Inject constructor() : ViewModel() {
                 _route.value = _route.value.copy(startLocation = locationType.location)
             LocationType.END ->
                 _route.value = _route.value.copy(endLocation = locationType.location)
+            LocationType.INTERMEDIATE -> Unit
         }
     }
 

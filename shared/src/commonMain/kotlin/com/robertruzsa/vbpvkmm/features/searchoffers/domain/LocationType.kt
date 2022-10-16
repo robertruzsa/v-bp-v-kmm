@@ -1,3 +1,3 @@
 package com.robertruzsa.vbpvkmm.features.searchoffers.domain
 
-enum class LocationType { START, END }
+enum class LocationType { START, END, INTERMEDIATE }
